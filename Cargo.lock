@@ -2507,6 +2507,7 @@ dependencies = [
  "eyre",
  "log",
  "log4rs",
+ "strum",
  "tokio",
 ]
 
