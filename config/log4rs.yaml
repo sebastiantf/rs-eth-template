@@ -1,0 +1,32 @@
+appenders:
+  stdout:
+    kind: console
+    encoder:
+      pattern: '{d} [{t}] |{h({({l})})}| {f}:{L} — {m}{n}'
+
+  main_ap:
+    kind: rolling_file
+    path: logs/logs.log
+    encoder:
+      pattern: '{d} [{t}] |{h({({l})})}| {f}:{L} — {m}{n}'
+    policy:
+      trigger:
+        kind: size
+        limit: 30 mb
+      roller:
+        kind: fixed_window
+        pattern: logs/logs{}.gz
+        count: 5
+        base: 1
+
+root:
+  level: info
+  appenders:
+    - stdout
+    - main_ap
+
+loggers:
+  main:
+    level: info
+    appenders:
+      - main_ap

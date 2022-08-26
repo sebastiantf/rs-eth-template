@@ -1,3 +1,5 @@
+use log::info;
+
 pub fn run() {
-  println!("Hello, world!");
+    info!("Hello, world!");
 }
