@@ -8,6 +8,7 @@ version = "0.1.0"
 [dependencies]
 dotenv = "0.15.0"
 ethers = {version = "0.17.0", features = ["ws", "rustls"]}
+eyre = "0.6.8"
 log = "0.4.17"
 log4rs = {version = "1.1.1", features = ["gzip"]}
 tokio = "1.20.1"
