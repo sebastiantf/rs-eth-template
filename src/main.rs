@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, world!");
+    rs_eth_template::run();
 }
