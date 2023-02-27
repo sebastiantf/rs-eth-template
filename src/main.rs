@@ -12,9 +12,14 @@ async fn main() -> eyre::Result<()> {
     info!("Config: {:#?}", &config);
 
     debug!("Initializing Provider...");
-    let provider = Provider::<Http>::try_from(&config.eth_provider_rpc)?;
-
-    rs_eth_template::run(&config, provider).await?;
+    if config.eth_provider_rpc.starts_with("http") {
+        let provider = Provider::<Http>::try_from(&config.eth_provider_rpc)?;
+        rs_eth_template::run(&config, provider).await?;
+    } else {
+        let ws = Ws::connect(&config.eth_provider_rpc).await?;
+        let provider = Provider::new(ws);
+        rs_eth_template::run(&config, provider).await?;
+    }
 
     Ok(())
 }
