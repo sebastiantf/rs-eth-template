@@ -15,5 +15,6 @@ pub async fn run<P: JsonRpcClient>(_config: &Config, provider: Provider<P>) -> e
         latest_block.number.unwrap(),
         latest_block.hash.unwrap()
     );
+    println!("Got block: {}", serde_json::to_string_pretty(&latest_block)?);
     Ok(())
 }
