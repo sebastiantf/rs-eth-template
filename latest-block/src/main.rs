@@ -1,7 +1,7 @@
 use ethers::prelude::*;
 use log::{debug, info};
 
-use rs_eth_template::config::Config;
+use utils::config::Config;
 
 #[tokio::main]
 async fn main() -> eyre::Result<()> {
@@ -14,11 +14,11 @@ async fn main() -> eyre::Result<()> {
     debug!("Initializing Provider...");
     if config.eth_provider_rpc.starts_with("http") {
         let provider = Provider::<Http>::try_from(&config.eth_provider_rpc)?;
-        rs_eth_template::run(&config, provider).await?;
+        latest_block::run(&config, provider).await?;
     } else {
         let ws = Ws::connect(&config.eth_provider_rpc).await?;
         let provider = Provider::new(ws);
-        rs_eth_template::run(&config, provider).await?;
+        latest_block::run(&config, provider).await?;
     }
 
     Ok(())
