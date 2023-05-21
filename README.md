@@ -7,3 +7,4 @@ A template repo for starting off Ethereum applications with Rust.
 - dotenv
 - log4rs
 - eyre
+- Docker
